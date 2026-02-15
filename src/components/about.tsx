@@ -14,15 +14,18 @@ export default function About() {
           <FadeIn delay={0.1}>
             <div className="space-y-4 text-base md:text-lg text-neutral-400">
               <p>
-                I&apos;m a full-stack developer with a passion for building
-                clean, performant web applications. I enjoy working across the
-                entire stack, from crafting pixel-perfect UIs to designing robust
-                APIs and databases.
+                I&apos;m a student at Queen&apos;s University studying Applied
+                Mathematics and Computer Engineering, graduating in May 2027. My
+                interests lie at the intersection of quantitative finance,
+                algorithmic trading, and data analysis — I enjoy turning complex
+                mathematical ideas into working software.
               </p>
               <p>
-                When I&apos;m not coding, you can find me exploring new
-                technologies, contributing to open-source projects, or enjoying
-                the outdoors.
+                As a project manager with QUANTT, I lead a pairs trading
+                research team exploring statistical arbitrage strategies.
+                I&apos;ve also built engineering projects ranging from UAV
+                wildfire containment algorithms to autonomous rover navigation,
+                and competed in hackathons like QHacks.
               </p>
             </div>
           </FadeIn>
