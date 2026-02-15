@@ -1,46 +1,35 @@
 export interface Project {
   title: string;
   description: string;
-  image: string;
   tags: string[];
-  liveUrl?: string;
-  githubUrl?: string;
+  status?: string;
 }
 
 export const projects: Project[] = [
   {
-    title: "E-Commerce Platform",
+    title: "Derivative Modelling",
     description:
-      "A full-stack e-commerce application with real-time inventory, Stripe payments, and an admin dashboard for managing products and orders.",
-    image: "/projects/ecommerce.png",
-    tags: ["Next.js", "TypeScript", "Stripe", "PostgreSQL"],
-    liveUrl: "https://example.com",
-    githubUrl: "https://github.com/jack/ecommerce",
+      "Implementing Breeden-Litzenberger extraction to reconstruct market-implied probability distributions from option chains. Builds risk-neutral density surfaces for derivative pricing and risk analysis.",
+    tags: ["Python", "Scipy", "Plotly", "Breeden-Litzenberger"],
+    status: "In Progress",
   },
   {
-    title: "Task Management App",
+    title: "Wildfire Containment Algorithm",
     description:
-      "A collaborative task management tool with drag-and-drop boards, real-time updates, and team workspaces.",
-    image: "/projects/taskapp.png",
-    tags: ["React", "Node.js", "Socket.io", "MongoDB"],
-    liveUrl: "https://example.com",
-    githubUrl: "https://github.com/jack/taskapp",
+      "UAV coordination algorithm for wildfire containment using Lloyd's algorithm to optimize coverage zones. Simulates multi-drone deployment for efficient area partitioning and real-time fire boundary tracking.",
+    tags: ["Matlab", "Lloyd's Algorithm"],
   },
   {
-    title: "AI Chat Interface",
+    title: "Autonomous Mars Rover",
     description:
-      "A sleek chat interface for interacting with language models, featuring streaming responses, conversation history, and markdown rendering.",
-    image: "/projects/aichat.png",
-    tags: ["Next.js", "OpenAI", "Tailwind CSS", "Vercel AI SDK"],
-    liveUrl: "https://example.com",
-    githubUrl: "https://github.com/jack/aichat",
+      "Navigation algorithm using LiDAR sensor data to detect and avoid obstacles in unstructured terrain. Processes point cloud data for real-time pathfinding and autonomous decision-making.",
+    tags: ["Python", "LiDAR"],
   },
   {
-    title: "Developer Portfolio",
+    title: "HomeSafe",
     description:
-      "A minimal, dark-themed portfolio site built with Next.js and Framer Motion. Clean animations and responsive design.",
-    image: "/projects/portfolio.png",
-    tags: ["Next.js", "Framer Motion", "Tailwind CSS"],
-    githubUrl: "https://github.com/jack/portfolio",
+      "AI-based safety-first route optimizer that uses crime and environmental data to recommend the safest walking paths. Built at QHacks 2024, placing 6th overall.",
+    tags: ["Python", "HTML", "MapBox API", "OpenAI API"],
+    status: "QHacks 2024 – 6th Place",
   },
 ];

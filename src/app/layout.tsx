@@ -8,8 +8,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Jack | Portfolio",
-  description: "Developer portfolio showcasing projects and skills.",
+  title: "Jackson Moores | Portfolio",
+  description: "Portfolio of Jackson Moores — Applied Math & Computer Engineering student at Queen's University.",
 };
 
 export default function RootLayout({

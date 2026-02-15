@@ -45,29 +45,12 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
           ))}
         </div>
 
-        {/* Links */}
-        <div className="flex items-center gap-4">
-          {project.liveUrl && (
-            <a
-              href={project.liveUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm text-blue-500 hover:text-blue-400 transition-colors"
-            >
-              Live Demo
-            </a>
-          )}
-          {project.githubUrl && (
-            <a
-              href={project.githubUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm text-neutral-400 hover:text-neutral-50 transition-colors"
-            >
-              Source Code
-            </a>
-          )}
-        </div>
+        {/* Status */}
+        {project.status && (
+          <span className="inline-block text-xs text-blue-400 bg-blue-500/10 border border-blue-500/20 rounded-full px-2.5 py-0.5">
+            {project.status}
+          </span>
+        )}
       </div>
     </motion.div>
   );

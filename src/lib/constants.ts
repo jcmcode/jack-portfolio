@@ -1,10 +1,10 @@
 export const PERSONAL = {
-  name: "Jack",
-  tagline: "Full-Stack Developer",
+  name: "Jackson Moores",
+  tagline: "Applied Math & Computer Engineering Student",
   intro:
-    "I build modern web applications with clean code and thoughtful design. Passionate about creating experiences that are fast, accessible, and delightful to use.",
-  email: "hello@jack.dev",
-  location: "San Francisco, CA",
+    "Queen's University student studying Applied Mathematics and Computer Engineering. I'm interested in quantitative finance, algorithmic trading, and building software that solves real-world engineering problems.",
+  email: "jcmoores@outlook.com",
+  location: "Kingston, ON",
 } as const;
 
 export const NAV_LINKS = [
@@ -16,27 +16,26 @@ export const NAV_LINKS = [
 export const SOCIAL_LINKS = [
   {
     label: "GitHub",
-    href: "https://github.com/jack",
+    href: "https://github.com/jcmcode",
   },
   {
     label: "LinkedIn",
-    href: "https://linkedin.com/in/jack",
-  },
-  {
-    label: "Twitter",
-    href: "https://twitter.com/jack",
+    href: "https://linkedin.com/in/jackson-moores",
   },
 ] as const;
 
 export const SKILLS = [
-  "TypeScript",
-  "React",
-  "Next.js",
-  "Node.js",
-  "Tailwind CSS",
-  "PostgreSQL",
   "Python",
-  "Docker",
-  "AWS",
+  "C++/C",
+  "Java",
+  "C#",
+  "SQL",
+  "NumPy",
+  "Pandas",
+  "Matplotlib",
+  "PyTorch",
   "Git",
+  "Matlab",
+  "Algorithms",
+  "Quantitative Finance",
 ] as const;
