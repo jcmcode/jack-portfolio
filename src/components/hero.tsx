@@ -1,64 +1,55 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { PERSONAL } from "@/lib/constants";
+import SnapIn from "./snap-in";
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Subtle radial gradient accent */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <div className="w-[600px] h-[600px] bg-blue-500/10 rounded-full blur-[120px]" />
-      </div>
-
-      <div className="relative max-w-6xl mx-auto px-6 py-20 text-center">
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="text-blue-500 text-sm md:text-base font-medium mb-4"
+    <section
+      style={{
+        padding: "72px 48px 56px",
+        borderBottom: "2px solid var(--border)",
+      }}
+    >
+      <SnapIn>
+        <div
+          className="font-mono text-[10px] uppercase tracking-[3px] mb-7"
+          style={{ color: "var(--text-muted)" }}
         >
-          {PERSONAL.tagline}
-        </motion.p>
+          {PERSONAL.tagline} — {PERSONAL.university}
+        </div>
+      </SnapIn>
 
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="text-5xl md:text-7xl font-bold text-neutral-50 mb-6"
+      <SnapIn delay={0.05}>
+        <h1
+          className="text-[clamp(48px,8vw,72px)] font-black leading-[0.88] mb-7"
+          style={{ letterSpacing: "-4px", color: "var(--fg)" }}
         >
-          Hi, I&apos;m {PERSONAL.name}
-        </motion.h1>
+          BUILDING
+          <br />
+          QUANTITATIVE
+          <br />
+          SYSTEMS
+        </h1>
+      </SnapIn>
 
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="text-base md:text-lg text-neutral-400 max-w-2xl mx-auto mb-10"
-        >
-          {PERSONAL.intro}
-        </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="flex items-center justify-center gap-4"
-        >
-          <a
-            href="#projects"
-            className="px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white text-sm font-medium rounded-lg transition-colors"
+      <SnapIn delay={0.1}>
+        <div className="flex justify-between items-end">
+          <p
+            className="font-mono text-[13px] leading-relaxed max-w-[420px]"
+            style={{ color: "var(--text-secondary)" }}
           >
-            View Projects
-          </a>
+            {PERSONAL.intro}
+          </p>
           <a
-            href="#contact"
-            className="px-6 py-3 border border-neutral-700 hover:border-neutral-500 text-neutral-300 text-sm font-medium rounded-lg transition-colors"
+            href="/#about"
+            className="hidden md:block font-mono text-[10px] uppercase tracking-[2px]"
+            style={{ color: "var(--text-muted)" }}
           >
-            Get in Touch
+            Scroll ↓
           </a>
-        </motion.div>
-      </div>
+        </div>
+      </SnapIn>
     </section>
   );
 }
