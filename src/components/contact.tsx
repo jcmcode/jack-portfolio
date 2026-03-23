@@ -1,36 +1,55 @@
-import FadeIn from "./fade-in";
-import SectionHeading from "./section-heading";
-import SocialLinks from "./social-links";
-import { PERSONAL } from "@/lib/constants";
+import { PERSONAL, SOCIAL_LINKS } from "@/lib/constants";
+import SnapIn from "./snap-in";
 
 export default function Contact() {
   return (
-    <section id="contact" className="py-20 md:py-32 scroll-mt-20">
-      <div className="max-w-6xl mx-auto px-6 text-center">
-        <FadeIn>
-          <SectionHeading>Get in Touch</SectionHeading>
-        </FadeIn>
-
-        <FadeIn delay={0.1}>
-          <p className="text-base md:text-lg text-neutral-400 max-w-xl mx-auto mb-8">
-            I&apos;m always open to new opportunities and interesting projects.
-            Feel free to reach out if you&apos;d like to work together.
-          </p>
-        </FadeIn>
-
-        <FadeIn delay={0.2}>
+    <section id="contact" style={{ padding: "64px 48px" }} className="text-center">
+      <SnapIn>
+        <h2
+          className="text-4xl font-black mb-4"
+          style={{ letterSpacing: "-2px" }}
+        >
+          LET&apos;S CONNECT
+        </h2>
+      </SnapIn>
+      <SnapIn delay={0.05}>
+        <p
+          className="font-mono text-[13px] mb-8"
+          style={{ color: "var(--text-secondary)" }}
+        >
+          Open to opportunities in quantitative finance, software engineering,
+          and research.
+        </p>
+      </SnapIn>
+      <SnapIn delay={0.1}>
+        <div className="flex justify-center gap-8 flex-wrap">
           <a
             href={`mailto:${PERSONAL.email}`}
-            className="inline-block px-8 py-3 bg-blue-500 hover:bg-blue-600 text-white text-sm font-medium rounded-lg transition-colors mb-8"
+            className="font-mono text-[11px] uppercase tracking-[2px] pb-1 transition-colors duration-150"
+            style={{
+              color: "var(--fg)",
+              borderBottom: "2px solid var(--border)",
+            }}
           >
-            Say Hello
+            Email
           </a>
-        </FadeIn>
-
-        <FadeIn delay={0.3}>
-          <SocialLinks className="justify-center" />
-        </FadeIn>
-      </div>
+          {SOCIAL_LINKS.map((link) => (
+            <a
+              key={link.label}
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-mono text-[11px] uppercase tracking-[2px] pb-1 transition-colors duration-150"
+              style={{
+                color: "var(--fg)",
+                borderBottom: "2px solid var(--border)",
+              }}
+            >
+              {link.label}
+            </a>
+          ))}
+        </div>
+      </SnapIn>
     </section>
   );
 }

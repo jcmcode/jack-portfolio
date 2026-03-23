@@ -1,11 +1,24 @@
-import { PERSONAL } from "@/lib/constants";
-
 export default function Footer() {
   return (
-    <footer className="border-t border-neutral-800 py-8">
-      <div className="max-w-6xl mx-auto px-6 text-center text-sm text-neutral-500">
-        &copy; {new Date().getFullYear()} {PERSONAL.name}. All rights reserved.
-      </div>
+    <footer
+      className="flex justify-between"
+      style={{
+        padding: "20px 48px",
+        borderTop: "2px solid var(--border)",
+      }}
+    >
+      <span
+        className="font-mono text-[10px] uppercase tracking-[2px]"
+        style={{ color: "var(--text-muted)" }}
+      >
+        © {new Date().getFullYear()} Jackson Moores
+      </span>
+      <span
+        className="font-mono text-[10px] uppercase tracking-[2px]"
+        style={{ color: "var(--text-muted)" }}
+      >
+        Built with Next.js
+      </span>
     </footer>
   );
 }
