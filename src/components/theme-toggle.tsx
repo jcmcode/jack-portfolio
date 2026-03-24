@@ -1,12 +1,15 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function ThemeToggle({ className }: { className?: string }) {
-  const [dark, setDark] = useState<boolean>(() => {
-    if (typeof window === "undefined") return false;
-    return document.documentElement.classList.contains("dark");
-  });
+  const [dark, setDark] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setDark(document.documentElement.classList.contains("dark"));
+    setMounted(true);
+  }, []);
 
   function toggle() {
     const next = !dark;
@@ -22,7 +25,7 @@ export default function ThemeToggle({ className }: { className?: string }) {
       className={`font-mono text-[10px] uppercase tracking-[2px] transition-colors duration-150 cursor-pointer ${className ?? ""}`}
       style={{ color: className ? undefined : "var(--text-muted)" }}
     >
-      {dark ? "LIGHT" : "DARK"}
+      {mounted ? (dark ? "LIGHT" : "DARK") : "DARK"}
     </button>
   );
 }
