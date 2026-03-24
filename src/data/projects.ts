@@ -22,156 +22,180 @@ export const projects: Project[] = [
     slug: "pairs-trading",
     title: "QUANTT Pairs Trading",
     description:
-      "Quantitative trading framework that discovers and trades equity pairs through unsupervised clustering across 142 tickers and 5 sectors.",
+      "Arbitrage algorithm using unsupervised clustering to identify and trade correlated securities across 5 sectors.",
     tags: ["Python", "Scikit-learn", "Pandas", "Quantitative Finance"],
     status: "Complete",
     timeline: "2024 — 2025",
-    role: "QUANTT Research Group",
+    role: "Project Manager — QUANTT",
     githubUrl: "https://github.com/jcmcode/QUANTT-PairsTrading",
     stats: [
-      { value: "64%", label: "Profitability" },
+      { value: "64%", label: "Top-50 Profitability" },
       { value: "142", label: "Tickers Analyzed" },
-      { value: "5x", label: "vs Random Selection" },
+      { value: "940", label: "Significant Pairs" },
     ],
     sections: {
       overview:
-        "A quantitative trading research framework that discovers and trades equity pairs through unsupervised clustering. Instead of traditional cointegration, it identifies assets that repeatedly cluster together based on real-time feature similarity, then validates and backtests these persistent pairs across 142 tickers in 5 sectors.",
+        "Developed an arbitrage algorithm to trade pairs and an unsupervised clustering pipeline to identify correlated securities. Built as Project Manager for QUANTT — Queen's University Algorithmic and Network Trading Team.",
       approach:
-        "Used OPTICS, KMeans, and DBSCAN clustering to identify pairs based on feature similarity rather than price correlation. Validated pairs through a 5-test scored methodology with permutation testing. Applied Kalman-filtered hedge ratios for dynamic position sizing with 10bps transaction cost modeling.",
+        "Used OPTICS, KMeans, and DBSCAN clustering to identify pairs based on feature similarity rather than traditional cointegration. Validated pairs through a 5-test scored methodology with permutation testing. Applied Kalman-filtered hedge ratios for dynamic position sizing with 10bps transaction cost modeling.",
       results:
-        "Achieved 5x improvement over random pair selection (4.0% vs 0.8% pass rate). Identified 3,643 pairs exceeding 8% noise-adjusted frequency threshold. 64% profitability on top 50 pairs. 940 statistically significant pairs confirmed via permutation testing.",
+        "5x improvement over random pair selection (4.0% vs 0.8% pass rate). 3,643 pairs exceeded 8% noise-adjusted frequency threshold. 64% profitability on top 50 pairs out-of-sample. 940 statistically significant pairs confirmed via permutation testing across 142 tickers in 5 sectors.",
       learnings:
-        "Developed deep understanding of unsupervised learning applied to financial data. Learned the importance of rigorous statistical validation — permutation testing revealed that many seemingly profitable pairs were indistinguishable from noise without proper controls.",
+        "Rigorous statistical validation is essential — permutation testing revealed that many seemingly profitable pairs were indistinguishable from noise without proper controls. Managing a research team taught me to balance ambition with methodological discipline.",
     },
   },
   {
     slug: "risk-neutral-density",
     title: "Risk-Neutral Density",
     description:
-      "Implements Breeden-Litzenberger (1978) to extract market-implied probability distributions from SPY options data.",
-    tags: ["Python", "Jupyter", "Options Pricing", "Finance"],
-    status: "Complete",
-    timeline: "2025",
+      "Breeden-Litzenberger extraction to reconstruct market-implied probability distributions from option chains.",
+    tags: ["Python", "SciPy", "Plotly", "Breeden-Litzenberger"],
+    status: "In Progress",
+    timeline: "2025 — Present",
     role: "Solo Developer",
     githubUrl: "https://github.com/jcmcode/risk-neutral-density",
     stats: [
-      { value: "19", label: "Figures Generated" },
-      { value: "SPY", label: "Options Data" },
-      { value: "B-L", label: "Core Method" },
+      { value: "2-10x", label: "Tail Risk vs Lognormal" },
+      { value: "SPY", label: "Options Chain" },
+      { value: "B-L '78", label: "Core Method" },
     ],
     sections: {
       overview:
-        "Implements the Breeden-Litzenberger (1978) method to extract market-implied probability distributions from live SPY options data. Demonstrates how option prices encode forward-looking market expectations about asset price movements and tail risks.",
+        "Implementing Breeden-Litzenberger extraction to reconstruct market-implied probability distributions from option chains to analyze tail risk, skew, and directional bias relative to lognormal benchmarks.",
       approach:
-        "Live SPY options data acquisition and processing. Volatility smile extraction via Black-Scholes inversion using Brent's algorithm. Risk-neutral density recovery using butterfly spread approximation with cubic spline interpolation.",
+        "Live SPY options data acquisition. Volatility smile extraction via Black-Scholes inversion using Brent's algorithm. Risk-neutral density recovery using the second partial derivative of call prices with respect to strike (butterfly spread approximation) and cubic spline interpolation.",
       results:
-        "Generated 19 publication-quality figures showing market-implied distributions. Key empirical finding: the market assigns 2-10x more probability to large declines (10-20%) versus lognormal predictions, reflecting persistent post-1987 crash hedging demand.",
+        "Extracted risk-neutral densities showing the market assigns 2-10x more probability to large declines (10-20%) versus lognormal predictions — quantifying the persistent crash premium embedded in option prices since 1987.",
       learnings:
-        "Deepened understanding of how option markets price tail risk. The gap between risk-neutral and real-world distributions reveals the price of fear embedded in option markets.",
+        "The gap between risk-neutral and real-world distributions is where the money is. Understanding this spread is fundamental to derivatives pricing and tail risk hedging.",
     },
   },
   {
     slug: "vchat",
     title: "vChat",
     description:
-      "Self-hosted P2P encrypted video chat with zero accounts, tracking, or media servers. Supports 2-6 participants.",
+      "Self-hosted P2P encrypted video chat — zero accounts, zero tracking, zero media servers.",
     tags: ["SvelteKit", "TypeScript", "WebRTC", "Docker"],
     status: "Complete",
     timeline: "2025",
     role: "Solo Developer",
     githubUrl: "https://github.com/jcmcode/vchat",
     stats: [
-      { value: "P2P", label: "Architecture" },
-      { value: "E2E", label: "Encryption" },
-      { value: "6", label: "Max Participants" },
+      { value: "P2P", label: "No Central Server" },
+      { value: "E2EE", label: "DTLS-SRTP" },
+      { value: "2-6", label: "Participants" },
     ],
     sections: {
       overview:
-        "A self-hosted peer-to-peer encrypted video chat application with zero accounts, tracking, or media servers. Built for privacy — all media streams are encrypted end-to-end via WebRTC DTLS-SRTP with no data touching a central server.",
+        "A self-hosted peer-to-peer encrypted video chat application. Zero accounts, zero tracking, zero media servers. All media encrypted end-to-end via WebRTC DTLS-SRTP.",
       approach:
-        "SvelteKit frontend with TypeScript, Node.js WebSocket signaling server for peer discovery only. Docker + Caddy reverse proxy + Coturn TURN server for NAT traversal. Full mesh topology for up to 6 participants.",
+        "SvelteKit frontend with TypeScript. Node.js WebSocket signaling server for peer discovery only. Docker + Caddy reverse proxy + Coturn TURN server for NAT traversal. Full mesh topology.",
       results:
-        "Feature-complete video chat with screen sharing, file transfer, text chat, reactions, room passwords, and group admission control. Fully self-hostable with Docker Compose.",
+        "Feature-complete: video/audio calls, screen sharing, file transfer, text chat, reactions, room passwords, group admission control. Fully self-hostable via Docker Compose.",
       learnings:
-        "Learned the complexity of WebRTC — NAT traversal, STUN/TURN relay fallbacks, and the tradeoffs of mesh vs SFU topology. Building for privacy-first means rethinking assumptions about what needs to be centralized.",
+        "WebRTC is deceptively complex — NAT traversal, STUN/TURN fallbacks, and mesh vs SFU tradeoffs. Privacy-first architecture forces you to rethink what actually needs to be centralized.",
     },
   },
   {
-    slug: "claude-telegram",
-    title: "Claude Telegram Assistant",
+    slug: "wildfire-containment",
+    title: "Wildfire Containment Algorithm",
     description:
-      "Personal AI assistant integrating Telegram with Claude Code CLI, with autonomous routines and a skill system.",
-    tags: ["Python", "Claude API", "Telegram", "MCP"],
+      "UAV coordination algorithm using Lloyd's Algorithm to optimize wildfire containment coverage.",
+    tags: ["MATLAB", "Lloyd's Algorithm"],
     status: "Complete",
-    timeline: "2025",
+    timeline: "2024",
     role: "Solo Developer",
-    githubUrl: "https://github.com/jcmcode/claude-telegram-assistant",
     stats: [
-      { value: "MCP", label: "Protocol" },
-      { value: "Auto", label: "Routines" },
-      { value: "3-Tier", label: "Memory" },
+      { value: "Lloyd's", label: "Core Algorithm" },
+      { value: "UAV", label: "Multi-Agent" },
+      { value: "MATLAB", label: "Implementation" },
     ],
     sections: {
       overview:
-        "A personal assistant that integrates Telegram messaging with Claude Code CLI, giving Claude access to a full tool ecosystem — calendar, email, reminders, browser, files — via Telegram commands and autonomous heartbeat routines.",
+        "Developed a UAV coordination algorithm utilizing Lloyd's Algorithm to optimize wildfire containment coverage and effectively shrink wildfire radius.",
       approach:
-        "Skill system with keyword/regex auto-detection for commands (+email, +schedule, +remind, +task). Three-tier memory architecture: hot context, index, and knowledge tree. Autonomous heartbeat routines for morning briefings, midday checks, and evening summaries via launchd scheduling.",
+        "Lloyd's algorithm iteratively computes Voronoi regions and repositions UAVs to the centroid of their coverage area, converging on an optimal spatial distribution around the fire perimeter.",
       results:
-        "Functional personal assistant with 2-hour session persistence, task queue for autonomous execution, and full MCP tool integration. Handles daily scheduling, email drafting, and proactive reminders without manual invocation.",
+        "Algorithm converges on optimal containment positioning that adapts as the fire perimeter changes, effectively shrinking the wildfire radius through coordinated UAV coverage.",
       learnings:
-        "Learned about designing agentic systems that balance autonomy with user control. The three-tier memory architecture was essential — without it, context degradation made the assistant unreliable across sessions.",
+        "Computational geometry applied to real-world optimization problems. Voronoi-based methods provide elegant solutions to multi-agent coordination.",
     },
   },
   {
-    slug: "pomo",
-    title: "Pomo",
+    slug: "mars-rover",
+    title: "Autonomous Mars Rover",
     description:
-      "Lightweight native macOS Pomodoro timer with dual-ring display and menu bar integration.",
-    tags: ["Swift", "SwiftUI", "macOS"],
+      "Autonomous navigation algorithm using LiDAR sensor data to detect and avoid obstacles en route to a destination.",
+    tags: ["Python", "LiDAR", "Pathfinding"],
     status: "Complete",
-    timeline: "2025",
+    timeline: "2024",
     role: "Solo Developer",
-    githubUrl: "https://github.com/jcmcode/pomo",
     stats: [
-      { value: "Swift 6", label: "Language" },
-      { value: "Native", label: "macOS App" },
-      { value: "3", label: "Presets" },
+      { value: "LiDAR", label: "Obstacle Detection" },
+      { value: "Auto", label: "Navigation" },
+      { value: "Python", label: "Implementation" },
     ],
     sections: {
       overview:
-        "A lightweight native macOS Pomodoro timer with a dual-ring visual display, menu bar integration with progress indicator, and customizable work/break intervals.",
+        "Built an autonomous navigation algorithm for a Mars rover to navigate to a specified destination around multiple obstructions utilizing LiDAR sensor data to detect and avoid obstacles.",
       approach:
-        "Built with SwiftUI targeting macOS 14+. Three presets (Classic 25/5, Deep Work 50/10, Short Sprint 15/3) plus custom sequences. Granular notification system with system alerts, audio cues, and menu bar visual indicators.",
+        "LiDAR point cloud processing to build a real-time obstacle map. Pathfinding with obstacle avoidance heuristics. Continuous replanning as new sensor data arrives.",
       results:
-        "Clean, focused timer app that stays out of the way. Menu bar integration means it's always accessible without cluttering the desktop. Light/dark mode support follows system preferences.",
+        "Rover successfully navigates to specified destinations while autonomously avoiding multiple obstructions detected via LiDAR.",
       learnings:
-        "First native macOS app. Learned SwiftUI's declarative approach and the nuances of menu bar app development — managing window lifecycle and background execution differently from standard apps.",
+        "Autonomous decision-making under uncertainty. Real-time sensor data is noisy — robust filtering and conservative safety margins are essential.",
     },
   },
   {
     slug: "homesafe",
     title: "HomeSafe Kingston",
     description:
-      "Crime safety analysis tool for Kingston with route safety recommendations. Built at QHacks 2024, placing 6th.",
-    tags: ["Python", "Flask", "QHacks 2024"],
+      "AI-based safety-first route optimizer using crime and environmental data. QHacks 2024 — 6th Place.",
+    tags: ["Python", "HTML", "MapBox API", "OpenAI API"],
     status: "QHacks 2024 — 6th Place",
     timeline: "2024",
     role: "Hackathon Team",
     githubUrl: "https://github.com/jcmcode/HomeSafe-Kingston",
     stats: [
-      { value: "6th", label: "QHacks Placement" },
-      { value: "36h", label: "Build Time" },
-      { value: "Flask", label: "Web Framework" },
+      { value: "6th", label: "QHacks 2024" },
+      { value: "AI", label: "Route Scoring" },
+      { value: "MapBox", label: "Visualization" },
     ],
     sections: {
       overview:
-        "A crime safety analysis tool for Kingston that processes crime statistics and incident data, providing route safety recommendations via a Flask web interface.",
+        "Created an AI-based safety-first route optimizer using crime and environmental data to give directions avoiding high-risk areas which other map tools would not avoid.",
       approach:
-        "Aggregated Kingston crime data from CSV datasets. Built a safe routing engine (safe_router.py) that scores route segments based on historical incident density. Flask web app for visualization and route input.",
+        "Aggregated Kingston crime data and environmental risk factors. Built route scoring with OpenAI API for risk assessment. MapBox API for visualization and route rendering.",
       results:
-        "Placed 6th overall at QHacks 2024. Judges highlighted the practical impact and clean UX of the safety route recommendations.",
+        "Placed 6th overall at QHacks 2024. Judges highlighted the practical impact — generating routes that actively avoid high-risk areas, something Google Maps and Apple Maps don't do.",
       learnings:
-        "First major hackathon experience. Learned to scope aggressively under time pressure, divide work effectively in a team, and present technical work to non-technical judges.",
+        "Scoping aggressively under 36-hour time pressure. Dividing work effectively in a team and presenting technical work to non-technical judges.",
+    },
+  },
+  {
+    slug: "claude-telegram",
+    title: "Claude Telegram Assistant",
+    description:
+      "Personal AI assistant bridging Telegram with Claude Code CLI — autonomous routines, skill system, persistent memory.",
+    tags: ["Python", "Claude API", "Telegram", "MCP"],
+    status: "Complete",
+    timeline: "2025",
+    role: "Solo Developer",
+    githubUrl: "https://github.com/jcmcode/claude-telegram-assistant",
+    stats: [
+      { value: "MCP", label: "Tool Protocol" },
+      { value: "3-Tier", label: "Memory System" },
+      { value: "Auto", label: "Heartbeat Routines" },
+    ],
+    sections: {
+      overview:
+        "A personal assistant integrating Telegram with Claude Code CLI, giving Claude access to calendar, email, reminders, browser, and files via Telegram commands and autonomous scheduled routines.",
+      approach:
+        "Skill system with keyword/regex auto-detection (+email, +schedule, +remind, +task). Three-tier memory: hot context, index, and knowledge tree. Autonomous heartbeat routines via launchd for morning briefings, midday checks, evening summaries.",
+      results:
+        "Functional daily assistant with 2-hour session persistence, autonomous task execution, and full MCP tool integration. Handles scheduling, email drafting, and proactive reminders without manual invocation.",
+      learnings:
+        "Agentic systems need clear boundaries between autonomy and user control. The three-tier memory architecture was the difference between a reliable assistant and one that forgot everything between sessions.",
     },
   },
 ];
