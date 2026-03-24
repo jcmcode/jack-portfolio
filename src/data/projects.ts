@@ -25,7 +25,7 @@ export const projects: Project[] = [
       "Arbitrage algorithm using unsupervised clustering to identify and trade correlated securities across 5 sectors.",
     tags: ["Python", "Scikit-learn", "Pandas", "Quantitative Finance"],
     status: "Complete",
-    timeline: "2024 — 2025",
+    timeline: "2025 — Present",
     role: "Project Manager — QUANTT",
     githubUrl: "https://github.com/jcmcode/QUANTT-PairsTrading",
     stats: [
