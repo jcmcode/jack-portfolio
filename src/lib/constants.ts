@@ -21,7 +21,8 @@ export const SOCIAL_LINKS = [
 ];
 
 export const SKILLS: { category: string; items: string[] }[] = [
-  { category: "Languages", items: ["Python", "C++", "C", "Java", "C#", "SQL"] },
-  { category: "Tools & Libraries", items: ["NumPy", "Pandas", "PyTorch", "Matplotlib", "Git", "MATLAB"] },
-  { category: "Domains", items: ["Algorithms", "Quantitative Finance"] },
+  { category: "Languages", items: ["Python", "C++/C", "Java", "C#", "SQL"] },
+  { category: "ML / Data Science", items: ["NumPy", "Pandas", "Matplotlib", "PyTorch", "XGBoost", "Scikit-learn"] },
+  { category: "Tools", items: ["Git", "Bash", "MATLAB", "Excel", "Claude Code"] },
+  { category: "Domains", items: ["Algorithms", "Quantitative Finance", "Capital Markets", "Financial Modeling", "Data Analysis"] },
 ];
