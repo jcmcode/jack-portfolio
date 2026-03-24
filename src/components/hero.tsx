@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { PERSONAL } from "@/lib/constants";
 import SnapIn from "./snap-in";
 
@@ -41,13 +42,13 @@ export default function Hero() {
           >
             {PERSONAL.intro}
           </p>
-          <a
+          <Link
             href="/#about"
             className="hidden md:block font-mono text-[10px] uppercase tracking-[2px]"
             style={{ color: "var(--text-muted)" }}
           >
             Scroll ↓
-          </a>
+          </Link>
         </div>
       </SnapIn>
     </section>
