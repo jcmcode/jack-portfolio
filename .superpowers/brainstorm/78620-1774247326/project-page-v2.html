@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project Page v2 — With Project Selector</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #fff; color: #000; font-family: system-ui, -apple-system, sans-serif; }
+
+  .design-note { background: #f5f5f5; padding: 12px 48px; font-size: 11px; color: #999; font-family: 'Courier New', monospace; text-align: center; border-bottom: 1px solid #eee; }
+
+  /* NAV */
+  .nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 48px; border-bottom: 2px solid #000; background: #fff; position: sticky; top: 0; z-index: 100; }
+  .nav-logo { font-size: 13px; font-weight: 900; letter-spacing: 4px; text-transform: uppercase; text-decoration: none; color: #000; }
+  .nav-back { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; font-family: 'Courier New', monospace; color: #999; text-decoration: none; cursor: pointer; transition: color 0.12s; }
+  .nav-back:hover { color: #000; }
+
+  /* PROJECT SELECTOR */
+  .project-selector { display: grid; grid-template-columns: repeat(4, 1fr); border-bottom: 2px solid #000; }
+  .selector-item { padding: 20px 24px; border-right: 1px solid #ddd; cursor: pointer; transition: all 0.12s; }
+  .selector-item:last-child { border-right: none; }
+  .selector-item:hover { background: #f5f5f5; }
+  .selector-item.active { background: #000; color: #fff; }
+  .selector-item.active .selector-num { color: #555; }
+  .selector-item.active .selector-tech { color: #888; }
+  .selector-num { font-size: 9px; font-family: 'Courier New', monospace; color: #ccc; margin-bottom: 6px; letter-spacing: 2px; }
+  .selector-name { font-size: 13px; font-weight: 800; letter-spacing: -0.3px; margin-bottom: 4px; }
+  .selector-tech { font-size: 9px; font-family: 'Courier New', monospace; color: #999; text-transform: uppercase; letter-spacing: 1px; }
+
+  /* PROJECT HERO */
+  .project-hero { padding: 56px 48px 48px; border-bottom: 2px solid #000; }
+  .project-title { font-size: 56px; font-weight: 900; line-height: 0.9; letter-spacing: -3px; margin-bottom: 24px; }
+  .project-meta { display: flex; gap: 48px; margin-bottom: 24px; }
+  .meta-label { font-size: 9px; text-transform: uppercase; letter-spacing: 2px; font-family: 'Courier New', monospace; color: #999; margin-bottom: 4px; }
+  .meta-value { font-size: 13px; font-weight: 600; }
+  .project-tags { display: flex; gap: 8px; }
+  .tag { font-size: 10px; font-family: 'Courier New', monospace; padding: 4px 10px; border: 1px solid #000; text-transform: uppercase; letter-spacing: 1px; }
+
+  /* KEY STATS */
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); border-bottom: 2px solid #000; }
+  .stat { padding: 32px 48px; border-right: 1px solid #ddd; text-align: center; }
+  .stat:last-child { border-right: none; }
+  .stat-value { font-size: 36px; font-weight: 900; letter-spacing: -2px; margin-bottom: 4px; }
+  .stat-label { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; font-family: 'Courier New', monospace; color: #999; }
+
+  /* VISUAL AREA */
+  .visual { padding: 48px; border-bottom: 2px solid #000; background: #fafafa; text-align: center; }
+  .visual-placeholder { background: #eee; border: 2px dashed #ccc; padding: 64px; font-size: 12px; font-family: 'Courier New', monospace; color: #999; text-transform: uppercase; letter-spacing: 2px; }
+
+  /* CONTENT */
+  .content { display: grid; grid-template-columns: 200px 1fr; border-bottom: 2px solid #000; }
+  .content-nav { padding: 48px 32px 48px 48px; border-right: 1px solid #ddd; }
+  .content-nav-item { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; font-family: 'Courier New', monospace; color: #999; margin-bottom: 16px; cursor: pointer; transition: color 0.12s; }
+  .content-nav-item.active { color: #000; font-weight: 700; }
+  .content-body { padding: 48px; }
+  .content-section { margin-bottom: 40px; }
+  .content-section h3 { font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px; }
+  .content-section p { color: #444; font-size: 15px; line-height: 1.8; margin-bottom: 12px; }
+  .content-section ul { color: #444; font-size: 15px; line-height: 1.8; padding-left: 20px; margin-bottom: 12px; }
+
+  /* FOOTER */
+  .footer { display: flex; justify-content: space-between; padding: 20px 48px; border-top: 0; }
+  .footer-text { font-size: 10px; font-family: 'Courier New', monospace; color: #999; text-transform: uppercase; letter-spacing: 2px; }
+</style>
+</head>
+<body>
+
+<div class="design-note">MOCKUP v2 — Project selector bar at top replaces prev/next cycling</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-logo">Jackson Moores</a>
+  <a class="nav-back">← Back to Home</a>
+</nav>
+
+<!-- PROJECT SELECTOR -->
+<div class="project-selector">
+  <div class="selector-item active">
+    <div class="selector-num">01</div>
+    <div class="selector-name">Derivative Modelling</div>
+    <div class="selector-tech">Python / NumPy</div>
+  </div>
+  <div class="selector-item">
+    <div class="selector-num">02</div>
+    <div class="selector-name">Wildfire Containment</div>
+    <div class="selector-tech">C++ / Algorithms</div>
+  </div>
+  <div class="selector-item">
+    <div class="selector-num">03</div>
+    <div class="selector-name">Mars Rover</div>
+    <div class="selector-tech">C++ / LiDAR</div>
+  </div>
+  <div class="selector-item">
+    <div class="selector-num">04</div>
+    <div class="selector-name">HomeSafe</div>
+    <div class="selector-tech">QHacks / 6th</div>
+  </div>
+</div>
+
+<!-- PROJECT HERO -->
+<section class="project-hero">
+  <h1 class="project-title">DERIVATIVE<br>MODELLING</h1>
+  <div class="project-meta">
+    <div>
+      <div class="meta-label">Status</div>
+      <div class="meta-value">In Progress</div>
+    </div>
+    <div>
+      <div class="meta-label">Timeline</div>
+      <div class="meta-value">2025 — Present</div>
+    </div>
+    <div>
+      <div class="meta-label">Role</div>
+      <div class="meta-value">Solo Developer</div>
+    </div>
+    <div>
+      <div class="meta-label">Source</div>
+      <div class="meta-value" style="text-decoration: underline; cursor: pointer;">GitHub →</div>
+    </div>
+  </div>
+  <div class="project-tags">
+    <span class="tag">Python</span>
+    <span class="tag">NumPy</span>
+    <span class="tag">Quantitative Finance</span>
+    <span class="tag">Breeden-Litzenberger</span>
+  </div>
+</section>
+
+<!-- KEY STATS -->
+<div class="stats">
+  <div class="stat">
+    <div class="stat-value">3</div>
+    <div class="stat-label">Pricing Models</div>
+  </div>
+  <div class="stat">
+    <div class="stat-value">~2K</div>
+    <div class="stat-label">Lines of Code</div>
+  </div>
+  <div class="stat">
+    <div class="stat-value">PDF</div>
+    <div class="stat-label">Risk-Neutral Dist.</div>
+  </div>
+</div>
+
+<!-- VISUAL -->
+<section class="visual">
+  <div class="visual-placeholder">Project screenshot / diagram / visualization goes here</div>
+</section>
+
+<!-- DETAILED CONTENT -->
+<div class="content">
+  <nav class="content-nav">
+    <div class="content-nav-item active">Overview</div>
+    <div class="content-nav-item">Approach</div>
+    <div class="content-nav-item">Results</div>
+    <div class="content-nav-item">Learnings</div>
+  </nav>
+  <div class="content-body">
+    <div class="content-section">
+      <h3>Overview</h3>
+      <p>A financial modeling toolkit that uses the Breeden-Litzenberger theorem to extract risk-neutral probability distributions from option prices. The goal is to build an intuitive system for pricing derivatives and understanding implied market expectations.</p>
+    </div>
+    <div class="content-section">
+      <h3>Technical Approach</h3>
+      <p>The project implements several key components:</p>
+      <ul>
+        <li>Option chain data ingestion and cleaning pipeline</li>
+        <li>Numerical differentiation of call prices to extract risk-neutral PDFs</li>
+        <li>Monte Carlo simulation for exotic derivative pricing</li>
+        <li>Visualization suite for probability distributions and Greeks</li>
+      </ul>
+    </div>
+    <div class="content-section">
+      <h3>Key Results</h3>
+      <p>Successfully extracted implied probability distributions that closely match historical realized distributions. The toolkit provides a clean interface for exploring how market expectations shift across different expiration dates.</p>
+    </div>
+    <div class="content-section">
+      <h3>What I Learned</h3>
+      <p>This project deepened my understanding of the relationship between option prices and probabilistic expectations. Working with real market data taught me about the practical challenges of numerical methods — noise handling, interpolation choices, and the importance of robust data pipelines.</p>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <span class="footer-text">© 2026 Jackson Moores</span>
+  <span class="footer-text">Built with Next.js</span>
+</footer>
+
+</body>
+</html>

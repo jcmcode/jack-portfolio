@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Homepage Design — Jackson Moores Portfolio</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #fff; color: #000; font-family: system-ui, -apple-system, sans-serif; }
+
+  /* NAV */
+  .nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 48px; border-bottom: 2px solid #000; position: sticky; top: 0; background: #fff; z-index: 100; }
+  .nav-logo { font-size: 13px; font-weight: 900; letter-spacing: 4px; text-transform: uppercase; }
+  .nav-links { display: flex; gap: 24px; }
+  .nav-link { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; font-family: 'Courier New', monospace; color: #999; text-decoration: none; transition: color 0.15s; cursor: pointer; }
+  .nav-link:hover, .nav-link.active { color: #000; border-bottom: 2px solid #000; padding-bottom: 2px; }
+  .resume-btn { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; font-family: 'Courier New', monospace; color: #fff; background: #000; padding: 6px 14px; text-decoration: none; transition: all 0.15s; cursor: pointer; }
+  .resume-btn:hover { background: #333; }
+
+  /* HERO */
+  .hero { padding: 72px 48px 56px; border-bottom: 2px solid #000; }
+  .hero-tag { color: #999; font-size: 10px; text-transform: uppercase; letter-spacing: 3px; font-family: 'Courier New', monospace; margin-bottom: 28px; }
+  .hero-title { font-size: 72px; font-weight: 900; line-height: 0.88; letter-spacing: -4px; margin-bottom: 28px; }
+  .hero-bottom { display: flex; justify-content: space-between; align-items: flex-end; }
+  .hero-desc { color: #666; font-size: 13px; font-family: 'Courier New', monospace; line-height: 1.7; max-width: 420px; }
+  .hero-scroll { color: #999; font-size: 10px; text-transform: uppercase; letter-spacing: 2px; font-family: 'Courier New', monospace; }
+
+  /* SECTION HEADERS */
+  .section-header { display: flex; justify-content: space-between; align-items: baseline; padding: 16px 48px; border-bottom: 1px solid #ddd; }
+  .section-label { font-size: 10px; text-transform: uppercase; letter-spacing: 3px; font-family: 'Courier New', monospace; color: #999; }
+  .section-count { font-size: 10px; font-family: 'Courier New', monospace; color: #ccc; }
+
+  /* PROJECT ROWS */
+  .project-row { display: flex; justify-content: space-between; align-items: baseline; padding: 18px 48px; border-bottom: 1px solid #eee; cursor: pointer; transition: all 0.12s ease; }
+  .project-row:hover { background: #000; color: #fff; }
+  .project-row:hover .project-tech { color: #888; }
+  .project-row:hover .project-num { color: #555; }
+  .project-row:hover .project-arrow { opacity: 1; }
+  .project-left { display: flex; align-items: baseline; gap: 20px; }
+  .project-num { font-size: 10px; font-family: 'Courier New', monospace; color: #ccc; transition: color 0.12s; }
+  .project-name { font-size: 17px; font-weight: 800; letter-spacing: -0.5px; }
+  .project-right { display: flex; align-items: baseline; gap: 24px; }
+  .project-tech { font-size: 10px; font-family: 'Courier New', monospace; text-transform: uppercase; letter-spacing: 1px; color: #999; transition: color 0.12s; }
+  .project-arrow { font-size: 14px; opacity: 0; transition: opacity 0.12s; }
+
+  /* ABOUT */
+  .about { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 2px solid #000; }
+  .about-text { padding: 48px; border-right: 1px solid #ddd; }
+  .about-text p { color: #444; font-size: 15px; line-height: 1.8; margin-bottom: 16px; }
+  .about-skills { padding: 48px; }
+  .skill-category { margin-bottom: 28px; }
+  .skill-cat-label { font-size: 10px; text-transform: uppercase; letter-spacing: 3px; font-family: 'Courier New', monospace; color: #999; margin-bottom: 12px; }
+  .skill-list { display: flex; flex-wrap: wrap; gap: 8px; }
+  .skill-tag { font-size: 11px; font-family: 'Courier New', monospace; padding: 4px 10px; border: 1px solid #000; text-transform: uppercase; letter-spacing: 1px; }
+
+  /* EXPERIENCE */
+  .exp-row { display: grid; grid-template-columns: 100px 1fr 200px; padding: 20px 48px; border-bottom: 1px solid #eee; align-items: baseline; }
+  .exp-year { font-size: 11px; font-family: 'Courier New', monospace; color: #999; }
+  .exp-role { font-size: 15px; font-weight: 700; letter-spacing: -0.3px; }
+  .exp-company { font-size: 13px; color: #666; margin-top: 2px; }
+  .exp-desc { font-size: 11px; font-family: 'Courier New', monospace; color: #888; line-height: 1.6; }
+
+  /* EDUCATION */
+  .edu { display: flex; justify-content: space-between; align-items: baseline; padding: 28px 48px; border-bottom: 2px solid #000; }
+  .edu-school { font-size: 20px; font-weight: 800; letter-spacing: -0.5px; }
+  .edu-details { text-align: right; }
+  .edu-program { font-size: 12px; font-family: 'Courier New', monospace; color: #666; }
+  .edu-year { font-size: 11px; font-family: 'Courier New', monospace; color: #999; margin-top: 4px; }
+
+  /* CONTACT */
+  .contact { padding: 64px 48px; text-align: center; }
+  .contact-title { font-size: 36px; font-weight: 900; letter-spacing: -2px; margin-bottom: 16px; }
+  .contact-sub { color: #666; font-size: 13px; font-family: 'Courier New', monospace; margin-bottom: 32px; }
+  .contact-links { display: flex; justify-content: center; gap: 32px; }
+  .contact-link { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; font-family: 'Courier New', monospace; color: #000; text-decoration: none; border-bottom: 2px solid #000; padding-bottom: 4px; transition: all 0.12s; }
+  .contact-link:hover { color: #666; border-color: #666; }
+
+  /* FOOTER */
+  .footer { display: flex; justify-content: space-between; padding: 20px 48px; border-top: 2px solid #000; }
+  .footer-text { font-size: 10px; font-family: 'Courier New', monospace; color: #999; text-transform: uppercase; letter-spacing: 2px; }
+
+  /* DESIGN NOTE BANNER */
+  .design-note { background: #f5f5f5; padding: 12px 48px; font-size: 11px; color: #999; font-family: 'Courier New', monospace; text-align: center; border-bottom: 1px solid #eee; }
+</style>
+</head>
+<body>
+
+<div class="design-note">MOCKUP — Full homepage layout. Scroll to see all sections.</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-logo">Jackson Moores</div>
+  <div class="nav-links">
+    <a class="nav-link active">Work</a>
+    <a class="nav-link">About</a>
+    <a class="nav-link">Experience</a>
+    <a class="nav-link">Contact</a>
+    <a class="resume-btn">Resume ↓</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-tag">Applied Mathematics & Computer Engineering — Queen's University</div>
+  <h1 class="hero-title">BUILDING<br>QUANTITATIVE<br>SYSTEMS</h1>
+  <div class="hero-bottom">
+    <div class="hero-desc">Modeling derivatives, designing algorithms,<br>and engineering systems that solve real problems.</div>
+    <div class="hero-scroll">Scroll ↓</div>
+  </div>
+</section>
+
+<!-- SELECTED WORK -->
+<div class="section-header">
+  <span class="section-label">Selected Work</span>
+  <span class="section-count">04 Projects</span>
+</div>
+
+<div class="project-row">
+  <div class="project-left">
+    <span class="project-num">01</span>
+    <span class="project-name">Derivative Modelling</span>
+  </div>
+  <div class="project-right">
+    <span class="project-tech">Python / NumPy / Finance</span>
+    <span class="project-arrow">→</span>
+  </div>
+</div>
+<div class="project-row">
+  <div class="project-left">
+    <span class="project-num">02</span>
+    <span class="project-name">Wildfire Containment Algorithm</span>
+  </div>
+  <div class="project-right">
+    <span class="project-tech">C++ / Algorithms</span>
+    <span class="project-arrow">→</span>
+  </div>
+</div>
+<div class="project-row">
+  <div class="project-left">
+    <span class="project-num">03</span>
+    <span class="project-name">Autonomous Mars Rover</span>
+  </div>
+  <div class="project-right">
+    <span class="project-tech">C++ / LiDAR</span>
+    <span class="project-arrow">→</span>
+  </div>
+</div>
+<div class="project-row" style="border-bottom: 2px solid #000;">
+  <div class="project-left">
+    <span class="project-num">04</span>
+    <span class="project-name">HomeSafe</span>
+  </div>
+  <div class="project-right">
+    <span class="project-tech">QHacks 2024 / 6th Place</span>
+    <span class="project-arrow">→</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div class="section-header">
+  <span class="section-label">About</span>
+  <span class="section-count"></span>
+</div>
+
+<div class="about">
+  <div class="about-text">
+    <p>I'm Jackson — a student at Queen's University studying Applied Mathematics and Computer Engineering, graduating May 2027.</p>
+    <p>I'm interested in the intersection of quantitative modeling and software engineering. I like building things that take hard mathematical problems and turn them into working systems — from financial derivatives pricing to autonomous navigation.</p>
+  </div>
+  <div class="about-skills">
+    <div class="skill-category">
+      <div class="skill-cat-label">Languages</div>
+      <div class="skill-list">
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">C++</span>
+        <span class="skill-tag">C</span>
+        <span class="skill-tag">Java</span>
+        <span class="skill-tag">C#</span>
+        <span class="skill-tag">SQL</span>
+      </div>
+    </div>
+    <div class="skill-category">
+      <div class="skill-cat-label">Tools & Libraries</div>
+      <div class="skill-list">
+        <span class="skill-tag">NumPy</span>
+        <span class="skill-tag">Pandas</span>
+        <span class="skill-tag">PyTorch</span>
+        <span class="skill-tag">Matplotlib</span>
+        <span class="skill-tag">Git</span>
+        <span class="skill-tag">MATLAB</span>
+      </div>
+    </div>
+    <div class="skill-category">
+      <div class="skill-cat-label">Domains</div>
+      <div class="skill-list">
+        <span class="skill-tag">Algorithms</span>
+        <span class="skill-tag">Quantitative Finance</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- EXPERIENCE -->
+<div class="section-header">
+  <span class="section-label">Experience</span>
+  <span class="section-count"></span>
+</div>
+
+<div class="exp-row">
+  <div class="exp-year">2025</div>
+  <div>
+    <div class="exp-role">Role Title</div>
+    <div class="exp-company">Company / Organization</div>
+  </div>
+  <div class="exp-desc">Brief description of work and impact. Will be populated from resume.</div>
+</div>
+<div class="exp-row">
+  <div class="exp-year">2024</div>
+  <div>
+    <div class="exp-role">Role Title</div>
+    <div class="exp-company">Company / Organization</div>
+  </div>
+  <div class="exp-desc">Brief description of work and impact. Will be populated from resume.</div>
+</div>
+<div class="exp-row" style="border-bottom: 2px solid #000;">
+  <div class="exp-year">2023</div>
+  <div>
+    <div class="exp-role">Role Title</div>
+    <div class="exp-company">Company / Organization</div>
+  </div>
+  <div class="exp-desc">Brief description of work and impact. Will be populated from resume.</div>
+</div>
+
+<!-- EDUCATION -->
+<div class="section-header">
+  <span class="section-label">Education</span>
+  <span class="section-count"></span>
+</div>
+
+<div class="edu">
+  <div class="edu-school">Queen's University</div>
+  <div class="edu-details">
+    <div class="edu-program">B.ASc Applied Mathematics & Computer Engineering</div>
+    <div class="edu-year">Expected May 2027 — Kingston, ON</div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section class="contact">
+  <h2 class="contact-title">LET'S CONNECT</h2>
+  <p class="contact-sub">Open to opportunities in quantitative finance, software engineering, and research.</p>
+  <div class="contact-links">
+    <a class="contact-link" href="#">Email</a>
+    <a class="contact-link" href="#">GitHub</a>
+    <a class="contact-link" href="#">LinkedIn</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <span class="footer-text">© 2026 Jackson Moores</span>
+  <span class="footer-text">Built with Next.js</span>
+</footer>
+
+</body>
+</html>

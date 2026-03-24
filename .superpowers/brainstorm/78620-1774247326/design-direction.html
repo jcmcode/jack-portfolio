@@ -1,0 +1,82 @@
+<h2>Which design direction feels like you?</h2>
+<p class="subtitle">These are visual identities, not just color schemes. Pick the one that resonates — we'll refine from there.</p>
+
+<div class="cards">
+
+  <div class="card" data-choice="editorial" onclick="toggleSelect(this)">
+    <div class="card-image" style="background: #f5f0eb; padding: 32px; min-height: 280px; font-family: Georgia, 'Times New Roman', serif;">
+      <div style="color: #1a1a1a; font-size: 11px; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 24px;">Jackson Moores</div>
+      <div style="color: #1a1a1a; font-size: 42px; font-weight: 400; line-height: 1.1; margin-bottom: 16px; font-family: Georgia, serif;">Applied Math<br>&amp; Engineering</div>
+      <div style="width: 40px; height: 1px; background: #1a1a1a; margin-bottom: 16px;"></div>
+      <div style="color: #666; font-size: 13px; line-height: 1.6; max-width: 280px;">Quantitative modeling. Algorithmic design. Systems that solve real problems.</div>
+      <div style="position: absolute; bottom: 24px; right: 32px; color: #bbb; font-size: 11px; letter-spacing: 2px;">01 / 04</div>
+    </div>
+    <div class="card-body">
+      <h3>A — Editorial / Print-Inspired</h3>
+      <p>Light, warm background. Serif typography. Generous whitespace. Feels like a well-designed magazine — sophisticated, confident, unhurried. Projects presented as case studies with editorial layouts.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="brutalist-minimal" onclick="toggleSelect(this)">
+    <div class="card-image" style="background: #ffffff; padding: 32px; min-height: 280px; font-family: 'Courier New', monospace; position: relative; border-bottom: 3px solid #000;">
+      <div style="color: #000; font-size: 10px; text-transform: uppercase; letter-spacing: 4px; margin-bottom: 32px;">Portfolio / 2026</div>
+      <div style="color: #000; font-size: 48px; font-weight: 900; line-height: 0.95; margin-bottom: 20px; font-family: system-ui, sans-serif; letter-spacing: -2px;">JACKSON<br>MOORES</div>
+      <div style="color: #000; font-size: 12px; font-family: 'Courier New', monospace; margin-bottom: 8px;">Applied Math + Computer Engineering</div>
+      <div style="color: #000; font-size: 12px; font-family: 'Courier New', monospace;">Queen's University — 2027</div>
+      <div style="position: absolute; top: 32px; right: 32px; width: 12px; height: 12px; background: #000; border-radius: 50%;"></div>
+    </div>
+    <div class="card-body">
+      <h3>B — Brutalist Minimal</h3>
+      <p>Stark white or black. Heavy type contrasts with monospace details. Raw, intentional, anti-template. Grid-breaking layouts. No decoration — just information, presented with extreme confidence.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="technical-dark" onclick="toggleSelect(this)">
+    <div class="card-image" style="background: #0c0c0c; padding: 32px; min-height: 280px; font-family: 'SF Mono', 'Fira Code', monospace; position: relative; overflow: hidden;">
+      <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(ellipse at 30% 50%, rgba(99,102,241,0.08) 0%, transparent 60%);"></div>
+      <div style="position: relative; z-index: 1;">
+        <div style="color: #4f46e5; font-size: 11px; font-family: 'SF Mono', monospace; margin-bottom: 24px;">// jackson.moores</div>
+        <div style="color: #e2e8f0; font-size: 32px; font-weight: 600; line-height: 1.2; margin-bottom: 16px; font-family: 'Inter', system-ui, sans-serif; letter-spacing: -1px;">Derivative<br>Modelling</div>
+        <div style="display: flex; gap: 8px; margin-bottom: 16px;">
+          <span style="color: #94a3b8; font-size: 10px; padding: 3px 8px; border: 1px solid #1e293b; border-radius: 4px;">Python</span>
+          <span style="color: #94a3b8; font-size: 10px; padding: 3px 8px; border: 1px solid #1e293b; border-radius: 4px;">NumPy</span>
+          <span style="color: #94a3b8; font-size: 10px; padding: 3px 8px; border: 1px solid #1e293b; border-radius: 4px;">Finance</span>
+        </div>
+        <div style="color: #64748b; font-size: 12px; line-height: 1.6;">Breeden-Litzenberger theorem for extracting risk-neutral probability distributions...</div>
+      </div>
+      <div style="position: absolute; bottom: 16px; right: 24px; display: flex; gap: 4px;">
+        <div style="width: 6px; height: 6px; border-radius: 50%; background: #22c55e;"></div>
+        <div style="width: 6px; height: 6px; border-radius: 50%; background: #1e293b;"></div>
+        <div style="width: 6px; height: 6px; border-radius: 50%; background: #1e293b;"></div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>C — Technical Dark</h3>
+      <p>Dark but refined — not the generic AI dark theme. Subtle indigo/slate palette, monospace accents, code-inspired details. Feels like a well-designed developer tool. Data-forward project presentations with real metrics.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="swiss-modern" onclick="toggleSelect(this)">
+    <div class="card-image" style="background: #fafafa; padding: 32px; min-height: 280px; font-family: 'Helvetica Neue', Arial, sans-serif; position: relative;">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; height: 100%;">
+        <div>
+          <div style="color: #e63946; font-size: 64px; font-weight: 700; line-height: 0.9; margin-bottom: 12px;">JM</div>
+          <div style="color: #1a1a1a; font-size: 11px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 4px;">Applied Mathematics</div>
+          <div style="color: #1a1a1a; font-size: 11px; text-transform: uppercase; letter-spacing: 2px;">Computer Engineering</div>
+        </div>
+        <div style="border-left: 2px solid #1a1a1a; padding-left: 20px;">
+          <div style="color: #1a1a1a; font-size: 11px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px;">Selected Work</div>
+          <div style="color: #1a1a1a; font-size: 14px; margin-bottom: 8px; font-weight: 500;">01 — Derivative Modelling</div>
+          <div style="color: #1a1a1a; font-size: 14px; margin-bottom: 8px; font-weight: 500;">02 — Wildfire Containment</div>
+          <div style="color: #1a1a1a; font-size: 14px; margin-bottom: 8px; font-weight: 500;">03 — Mars Rover</div>
+          <div style="color: #1a1a1a; font-size: 14px; font-weight: 500;">04 — HomeSafe</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>D — Swiss / International Modern</h3>
+      <p>Clean grid system, strong typographic hierarchy, one bold accent color. Inspired by Swiss design — structured, precise, mathematical. Feels intentional and disciplined, which fits your applied math background.</p>
+    </div>
+  </div>
+
+</div>
