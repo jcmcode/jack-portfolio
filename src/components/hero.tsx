@@ -8,13 +8,13 @@ export default function Hero() {
   return (
     <section
       style={{
-        padding: "72px 48px 56px",
+        padding: "96px 48px 72px",
         borderBottom: "2px solid var(--border)",
       }}
     >
       <SnapIn>
         <div
-          className="font-mono text-[10px] uppercase tracking-[3px] mb-7"
+          className="font-mono text-[10px] uppercase tracking-[3px] mb-8"
           style={{ color: "var(--text-muted)" }}
         >
           {PERSONAL.tagline} — {PERSONAL.university}
@@ -23,21 +23,19 @@ export default function Hero() {
 
       <SnapIn delay={0.05}>
         <h1
-          className="text-[clamp(48px,8vw,72px)] font-black leading-[0.88] mb-7"
-          style={{ letterSpacing: "-4px", color: "var(--fg)" }}
+          className="text-[clamp(64px,12vw,120px)] font-black leading-[0.85] mb-10"
+          style={{ letterSpacing: "-5px", color: "var(--fg)" }}
         >
-          BUILDING
+          JACKSON
           <br />
-          QUANTITATIVE
-          <br />
-          SYSTEMS
+          MOORES
         </h1>
       </SnapIn>
 
       <SnapIn delay={0.1}>
         <div className="flex justify-between items-end">
           <p
-            className="font-mono text-[13px] leading-relaxed max-w-[420px]"
+            className="font-mono text-[13px] leading-relaxed max-w-[480px]"
             style={{ color: "var(--text-secondary)" }}
           >
             {PERSONAL.intro}
