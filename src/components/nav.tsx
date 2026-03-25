@@ -48,6 +48,7 @@ export default function Nav() {
               </a>
             )
           )}
+          {/* TODO: Uncomment when resume PDF is hosted on Vercel
           <a
             href="/resume.pdf"
             download
@@ -59,6 +60,7 @@ export default function Nav() {
           >
             Resume ↓
           </a>
+          */}
           <ThemeToggle />
         </div>
 
@@ -100,15 +102,6 @@ export default function Nav() {
               </a>
             )
           )}
-          <a
-            href="/resume.pdf"
-            download
-            className="font-mono text-sm uppercase tracking-[3px]"
-            style={{ color: "var(--hover-fg)" }}
-            onClick={() => setMobileOpen(false)}
-          >
-            Resume ↓
-          </a>
           <ThemeToggle className="text-[var(--hover-fg)]" />
         </div>
       )}
