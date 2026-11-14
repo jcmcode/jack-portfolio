@@ -408,12 +408,6 @@ a.project-card:hover .arrow {
   gap: 2px 24px;
   font-size: 15px;
 }
-.org-note {
-  margin: 2px 0 0;
-  font-size: 14px;
-  line-height: 1.6;
-  color: var(--body);
-}
 
 /* ---------------------------------------------------------------------------
    Contact

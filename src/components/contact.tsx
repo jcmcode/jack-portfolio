@@ -75,7 +75,7 @@ function ContactForm() {
       </label>
       <label className="field">
         <T>Message</T>
-        <textarea name="message" rows={5} placeholder="A few lines is plenty." value={fields.message} onChange={update("message")} maxLength={5000} required />
+        <textarea name="message" rows={5} value={fields.message} onChange={update("message")} maxLength={5000} required />
       </label>
       <label className="honeypot" aria-hidden="true">
         Leave this empty

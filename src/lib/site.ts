@@ -3,7 +3,7 @@ export const SITE = {
   name: "Jackson Moores",
   eyebrow: "Mathematics & Engineering · Queen's University · 2027",
   intro:
-    "I study math and engineering at Queen's. I build software for quant research and AI tools, and I use AI agents to do a lot of the building. Right now I'm a platform developer at Strategic Analysis Corporation and CTO of QUANTT.",
+    "I'm in my fourth year of Mathematics and Engineering at Queen's, specializing in computing and communications. I'm interested in mathematical finance, probability and stochastic processes, and software development, especially agentic development with tools such as Claude Code and Codex.",
 };
 
 /** public/resume.pdf, shipped with the site (kept out of git). Opens in the browser's PDF viewer. */

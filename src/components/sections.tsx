@@ -123,9 +123,6 @@ export function Experience() {
                   </span>
                 </div>
               ))}
-              <p className="org-note">
-                <T>{o.note}</T>
-              </p>
             </div>
           </div>
         ))}
