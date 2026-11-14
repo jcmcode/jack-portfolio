@@ -1,0 +1,40 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "jack-portfolio",
+  "main": "worker/index.ts",
+  "compatibility_date": "2026-10-01",
+  "observability": { "enabled": true },
+
+  // Served only on the real domain. `wrangler deploy` attaches these and creates
+  // their DNS records; delete any old records for these names first (see README).
+  "routes": [
+    { "pattern": "jacksonmoores.com", "custom_domain": true },
+    { "pattern": "www.jacksonmoores.com", "custom_domain": true }
+  ],
+  "workers_dev": false,
+  "preview_urls": false,
+
+  // The static Next.js export (including public/resume.pdf). The Worker only
+  // runs first for /api/*; everything else is served straight from the asset store.
+  "assets": {
+    "directory": "./out",
+    "binding": "ASSETS",
+    "not_found_handling": "404-page",
+    "run_worker_first": ["/api/*"]
+  },
+
+  // Per-IP limit on the contact form (on top of Turnstile).
+  "ratelimits": [
+    {
+      "name": "FORM_LIMITER",
+      "namespace_id": "1001",
+      "simple": { "limit": 5, "period": 60 }
+    }
+  ]
+
+  // Secrets (set with `wrangler secret put <NAME>`, never committed):
+  //   TURNSTILE_SECRET_KEY  Cloudflare Turnstile secret
+  //   RESEND_API_KEY        API key for sending email via Resend
+  //   CONTACT_TO            where contact-form messages are delivered
+  //   CONTACT_FROM          verified sender, e.g. "Portfolio <hello@jacksonmoores.com>"
+}

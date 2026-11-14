@@ -1,27 +1,32 @@
 {
-  "name": "nextjs-temp",
+  "name": "jack-portfolio",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "lint": "eslint"
+    "build:cf": "node scripts/check-env.mjs --build && next build",
+    "preview": "NEXT_PUBLIC_TURNSTILE_SITE_KEY=1x00000000000000000000AA next build && wrangler dev",
+    "deploy": "node scripts/check-env.mjs && rm -rf .next out && next build && wrangler deploy",
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit && tsc -p worker",
+    "cf-typegen": "wrangler types"
   },
   "dependencies": {
-    "framer-motion": "^12.34.0",
-    "next": "16.1.6",
+    "next": "^16.4.6",
     "react": "19.2.3",
     "react-dom": "19.2.3"
   },
   "devDependencies": {
+    "@cloudflare/workers-types": "^5.20261114.1",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
-    "eslint-config-next": "16.1.6",
+    "eslint-config-next": "^16.4.6",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "wrangler": "^4.162.0"
   }
 }

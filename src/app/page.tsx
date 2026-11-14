@@ -1,25 +1,23 @@
-import Nav from "@/components/nav";
-import Hero from "@/components/hero";
-import SelectedWork from "@/components/selected-work";
-import About from "@/components/about";
-import Experience from "@/components/experience";
-import Education from "@/components/education";
 import Contact from "@/components/contact";
-import Footer from "@/components/footer";
+import Intro from "@/components/intro";
+import ScrollCompanions from "@/components/scroll-companions";
+import { Experience, Hero, Projects, SiteFooter } from "@/components/sections";
+import SiteHeader from "@/components/site-header";
 
 export default function Home() {
   return (
     <>
-      <Nav />
+      <div className="sweep" aria-hidden="true" />
+      <SiteHeader />
+      <ScrollCompanions />
       <main>
         <Hero />
-        <SelectedWork />
-        <About />
+        <Projects />
         <Experience />
-        <Education />
         <Contact />
       </main>
-      <Footer />
+      <SiteFooter />
+      <Intro />
     </>
   );
 }

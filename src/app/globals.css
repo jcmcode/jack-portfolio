@@ -1,49 +1,1129 @@
 @import "tailwindcss";
 
-@theme inline {
-  --font-sans: var(--font-inter), system-ui, sans-serif;
-  --font-mono: "Courier New", "Courier", monospace;
-}
-
-/* Light mode (default) */
+/* ---------------------------------------------------------------------------
+   Tokens. Dark is the default; light applies when the visitor's system prefers
+   it (and they haven't chosen), or when they pick it with the toggle.
+   --------------------------------------------------------------------------- */
 :root {
-  --bg: #fff;
-  --fg: #000;
-  --text-secondary: #444;
-  --text-muted: #666;
-  --border: #000;
-  --border-subtle: #ddd;
-  --hover-bg: #000;
-  --hover-fg: #fff;
-  --bg-subtle: #f5f5f5;
+  --accent: #b5d96a;
+  --accent-ink: #b5d96a;
+  --on-accent: #111214;
+
+  --bg: #111214;
+  --surface: #15171a;
+  --field: #17191c;
+  --card-hover: #191b1f;
+  --text: #e8e9ea;
+  --soft: #d3d6da;
+  --body: #b7bcc3;
+  --muted: #8f959d;
+  --line1: #1f2226;
+  --line2: #25282d;
+  --line3: #2a2d33;
+  --field-border: #33363d;
+  --hover-border: #41454d;
+  --outline-hover: #6b7079;
+  --strong: #ffffff;
+  --error: #f2a07b;
+  --bot2: #d3d6da;
+  --bot3: #7c828b;
+
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-display: var(--font-archivo), var(--font-inter), system-ui, sans-serif;
+  --font-code: var(--font-plex-mono), ui-monospace, monospace;
+
+  color-scheme: dark;
 }
 
-/* Dark mode */
-.dark {
-  --bg: #0a0a0a;
-  --fg: #fff;
-  --text-secondary: #aaa;
-  --text-muted: #888;
-  --border: #fff;
-  --border-subtle: #222;
-  --hover-bg: #fff;
-  --hover-fg: #000;
-  --bg-subtle: #111;
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --accent-ink: #516230;
+    --bg: #fafaf9;
+    --surface: #ffffff;
+    --field: #ffffff;
+    --card-hover: #f4f4f1;
+    --text: #17181a;
+    --soft: #2e3238;
+    --body: #4a4f57;
+    --muted: #646a72;
+    --line1: #e8e8e4;
+    --line2: #e2e2de;
+    --line3: #dcdcd7;
+    --field-border: #cfcfca;
+    --hover-border: #b8b8b2;
+    --outline-hover: #8a8f96;
+    --strong: #000000;
+    --error: #b42318;
+    --bot2: #2e3238;
+    --bot3: #8a8f96;
+    color-scheme: light;
+  }
 }
 
+:root[data-theme="light"] {
+  --accent-ink: #516230;
+  --bg: #fafaf9;
+  --surface: #ffffff;
+  --field: #ffffff;
+  --card-hover: #f4f4f1;
+  --text: #17181a;
+  --soft: #2e3238;
+  --body: #4a4f57;
+  --muted: #646a72;
+  --line1: #e8e8e4;
+  --line2: #e2e2de;
+  --line3: #dcdcd7;
+  --field-border: #cfcfca;
+  --hover-border: #b8b8b2;
+  --outline-hover: #8a8f96;
+  --strong: #000000;
+  --error: #b42318;
+  --bot2: #2e3238;
+  --bot3: #8a8f96;
+  color-scheme: light;
+}
+
+/* ---------------------------------------------------------------------------
+   Base
+   --------------------------------------------------------------------------- */
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  background-color: var(--bg);
-  color: var(--fg);
+  overflow-x: clip; /* agents parked just off the right edge never cause sideways scroll */
+  background: var(--bg);
+  color: var(--text);
   font-family: var(--font-sans);
-  transition: background-color 0.15s, color 0.15s;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.35s ease, color 0.35s ease;
 }
 
-/* Focus indicators — brutalist 2px outline */
+a {
+  color: var(--text);
+  text-decoration: none;
+}
+a:hover {
+  color: var(--strong);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
 :focus-visible {
-  outline: 2px solid var(--fg);
-  outline-offset: 2px;
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.mono {
+  font-family: var(--font-code);
+}
+
+.container {
+  max-width: 1160px;
+  margin-inline: auto;
+  padding-inline: 32px;
+}
+@media (max-width: 640px) {
+  .container {
+    padding-inline: 20px;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Buttons
+   --------------------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 20px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: filter 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
+}
+.btn:hover {
+  text-decoration: none;
+}
+.btn:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+.btn-solid {
+  background: var(--accent);
+  color: var(--on-accent);
+  font-weight: 600;
+  border: none;
+}
+.btn-solid:hover {
+  color: var(--on-accent);
+  filter: brightness(1.08);
+}
+.btn-outline {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--field-border);
+}
+.btn-outline:hover {
+  color: var(--text);
+  border-color: var(--outline-hover);
+}
+.btn-lg {
+  min-height: 48px;
+  padding: 0 22px;
+}
+
+/* ---------------------------------------------------------------------------
+   Header
+   --------------------------------------------------------------------------- */
+.site-header {
+  border-bottom: 1px solid var(--line1);
+}
+.site-header-inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: 20px;
+}
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 28px;
+  align-items: center;
+  font-size: 14px;
+}
+.site-nav a:not(.btn) {
+  color: var(--body);
+}
+.site-nav a:not(.btn):hover {
+  color: var(--strong);
+}
+.icon-btn {
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  border: 1px solid var(--field-border);
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+}
+.icon-btn:hover {
+  border-color: var(--outline-hover);
+}
+@media (max-width: 640px) {
+  .site-nav .nav-link {
+    display: none;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Hero
+   --------------------------------------------------------------------------- */
+.hero {
+  padding-block: 128px 120px;
+  text-align: center;
+}
+.eyebrow {
+  margin: 0 0 28px;
+  font-family: var(--font-code);
+  font-size: 13px;
+  color: var(--muted);
+}
+.hero-name {
+  margin: 0 0 40px;
+  font-family: var(--font-display);
+  font-stretch: 112%;
+  font-weight: 800;
+  font-size: clamp(60px, 10.5vw, 144px);
+  line-height: 0.92;
+  letter-spacing: -0.035em;
+}
+.hero-name .dot {
+  color: var(--accent-ink);
+}
+.hero-intro {
+  max-width: 620px;
+  margin: 0 auto 36px;
+  font-size: 20px;
+  line-height: 1.6;
+  color: var(--body);
+}
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+@media (max-width: 640px) {
+  .hero {
+    padding-block: 88px 80px;
+  }
+  .hero-intro {
+    font-size: 18px;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Sections
+   --------------------------------------------------------------------------- */
+.section {
+  padding-block: 24px 88px;
+  scroll-margin-top: 24px;
+}
+.section-title {
+  margin: 0 0 28px;
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr));
+  gap: 16px;
+}
+.project-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 28px;
+  border: 1px solid var(--line2);
+  border-radius: 12px;
+  background: var(--surface);
+  color: var(--text);
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+a.project-card:hover {
+  color: var(--text);
+  text-decoration: none;
+  border-color: var(--hover-border);
+  background: var(--card-hover);
+}
+.project-kind {
+  font-family: var(--font-code);
+  font-size: 12px;
+  color: var(--muted);
+}
+.project-title {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.project-title .arrow {
+  color: var(--muted);
+  font-weight: 400;
+  transition: transform 0.15s ease, color 0.15s ease;
+}
+a.project-card:hover .arrow {
+  transform: translate(2px, -2px);
+  color: var(--accent-ink);
+}
+.project-desc {
+  flex: 1;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--body);
+}
+.project-meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line2);
+  font-family: var(--font-code);
+  font-size: 12px;
+}
+.project-meta .tags {
+  color: var(--muted);
+}
+.project-meta .result {
+  color: var(--accent-ink);
+}
+
+.experience {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px 64px;
+}
+.experience .section-title {
+  flex: 0 0 220px;
+}
+.experience-list {
+  flex: 1 1 560px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+.org-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 4px 24px;
+  margin-bottom: 14px;
+}
+.org-name {
+  font-size: 18px;
+  font-weight: 600;
+}
+.date {
+  font-family: var(--font-code);
+  font-size: 13px;
+  color: var(--muted);
+}
+.org-roles {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-left: 20px;
+  border-left: 2px solid var(--line3);
+}
+.role {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 2px 24px;
+  font-size: 15px;
+}
+.org-note {
+  margin: 2px 0 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--body);
+}
+
+/* ---------------------------------------------------------------------------
+   Contact
+   --------------------------------------------------------------------------- */
+.contact {
+  background: var(--surface);
+  border-top: 1px solid var(--line1);
+}
+.contact-inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 56px;
+  align-items: flex-start;
+  padding-block: 88px;
+}
+.contact-aside {
+  flex: 1 1 340px;
+  min-width: 0;
+}
+.contact-title {
+  margin: 0 0 16px;
+  font-size: 36px;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+}
+.contact-lead {
+  max-width: 420px;
+  margin: 0 0 32px;
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--body);
+}
+.link-list {
+  display: flex;
+  flex-direction: column;
+  max-width: 420px;
+  font-size: 15px;
+}
+.link-list a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 48px;
+  border-top: 1px solid var(--line3);
+}
+.link-list a:last-child {
+  border-bottom: 1px solid var(--line3);
+}
+.link-list a > span[aria-hidden="true"] {
+  color: var(--muted);
+}
+
+.panel {
+  border: 1px solid var(--line3);
+  border-radius: 14px;
+  background: var(--bg);
+  padding: 28px;
+}
+.contact-form {
+  flex: 1 1 520px;
+  min-width: 0;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
+  gap: 16px;
+}
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--soft);
+}
+.field input,
+.field textarea,
+.inline-input {
+  min-height: 46px;
+  padding: 0 14px;
+  border: 1px solid var(--field-border);
+  border-radius: 8px;
+  background: var(--field);
+  color: var(--text);
+  font: inherit;
+  font-size: 15px;
+}
+.field > [data-type] {
+  align-self: flex-start;
+}
+.field textarea {
+  padding: 12px 14px;
+  line-height: 1.5;
+  resize: vertical;
+}
+.field input::placeholder,
+.field textarea::placeholder,
+.inline-input::placeholder {
+  color: var(--muted);
+}
+.field input:focus-visible,
+.field textarea:focus-visible,
+.inline-input:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 0;
+  border-color: transparent;
+}
+.form-foot {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+.fine-print {
+  font-size: 13px;
+  color: var(--muted);
+}
+.form-error {
+  margin: 0;
+  font-size: 14px;
+  color: var(--error);
+}
+.form-success {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-block: 24px;
+}
+.form-success strong {
+  font-size: 22px;
+  font-weight: 600;
+}
+.form-success p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--body);
+}
+.honeypot {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+/* Turnstile only shows itself if a visitor actually needs a challenge. */
+.turnstile:empty {
+  display: none;
+}
+/* While the widget stays invisible it shouldn't add an extra row of gap;
+   when it shows a challenge (.challenge) it gets normal spacing. */
+.form > .turnstile:not(.challenge) {
+  margin-top: -20px;
+}
+
+.site-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px;
+  padding-block: 28px 40px;
+  font-family: var(--font-code);
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* ---------------------------------------------------------------------------
+   Motion: page entrance and scroll reveals
+   --------------------------------------------------------------------------- */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+@keyframes sweep {
+  0% {
+    transform: scaleX(0);
+    opacity: 1;
+  }
+  70% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scaleX(1);
+    opacity: 0;
+  }
+}
+.sweep {
+  height: 2px;
+  background: var(--accent);
+  transform-origin: left;
+  animation: sweep 1.4s cubic-bezier(0.7, 0, 0.2, 1) both;
+}
+.in {
+  animation: rise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+.d1 { animation-delay: 0.25s; }
+.d2 { animation-delay: 0.4s; }
+.d3 { animation-delay: 0.52s; }
+.d4 { animation-delay: 0.66s; }
+.d5 { animation-delay: 0.85s; }
+
+@supports (animation-timeline: view()) {
+  .reveal {
+    animation: rise linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 45%;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Scroll companions: section rail + three little agents (wide screens only)
+   --------------------------------------------------------------------------- */
+.rail {
+  display: none;
+  position: fixed;
+  right: 24px;
+  top: 50%;
+  margin-top: -150px;
+  width: 120px;
+  height: 300px;
+  z-index: 30;
+  pointer-events: none;
+}
+/* Only where the right margin is wide enough that the rail never covers content. */
+@media (min-width: 1380px) {
+  .rail {
+    display: block;
+  }
+}
+.rail-line {
+  position: absolute;
+  left: 80px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--line3);
+}
+.tick {
+  position: absolute;
+  left: 0;
+  width: 85px;
+  min-height: 32px;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px;
+  pointer-events: auto;
+}
+.tick:hover {
+  text-decoration: none;
+}
+.tick-label {
+  font-family: var(--font-code);
+  font-size: 11px;
+  white-space: nowrap;
+  color: var(--muted);
+  opacity: 0;
+  transform: translateX(6px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.tick:hover .tick-label,
+.tick[aria-current="true"] .tick-label {
+  opacity: 1;
+  transform: none;
+}
+.tick[aria-current="true"] .tick-label {
+  color: var(--text);
+}
+.tick-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  border: 1.5px solid var(--line3);
+  background: var(--bg);
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+.tick:hover .tick-dot {
+  transform: scale(1.3);
+}
+.tick[aria-current="true"] .tick-dot {
+  border-color: var(--accent);
+  background: var(--accent);
+}
+.bots {
+  position: absolute;
+  left: 90px;
+  top: 0;
+  width: 28px;
+  height: 100%;
+}
+.bot {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 26px;
+  height: 26px;
+  transform: translate(0, -80px);
+  will-change: transform;
+}
+.bot svg {
+  display: block;
+  overflow: visible;
+}
+.bot-0 { --bot-fill: var(--accent); }
+.bot-1 { --bot-fill: var(--bot2); }
+.bot-2 { --bot-fill: var(--bot3); }
+.bot-shape .body {
+  fill: var(--bot-fill);
+}
+.bot-shape .antenna {
+  stroke: var(--bot-fill);
+}
+.bot-shape .eyes {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform 0.08s ease;
+}
+
+/* ---------------------------------------------------------------------------
+   Intro: on a first visit the page starts as a blueprint and three agents
+   build it. <html data-intro> is set before first paint by the inline script
+   in layout.tsx and moves building -> touring -> done (see intro.tsx):
+     building  the hero is being built
+     touring   hero done; sections below are built as they scroll into view
+     done      everything built
+   Pieces: [data-build="box"] gets assembled, [data-type] gets typed out,
+   .hero-name .ch letters get stamped.
+   --------------------------------------------------------------------------- */
+:root {
+  --scaffold: rgba(181, 217, 106, 0.5);
+  --scaffold-fill: rgba(181, 217, 106, 0.08);
+  --scaffold-grid: rgba(181, 217, 106, 0.05);
+}
+:root[data-theme="light"] {
+  --scaffold: rgba(81, 98, 48, 0.45);
+  --scaffold-fill: rgba(81, 98, 48, 0.08);
+  --scaffold-grid: rgba(81, 98, 48, 0.06);
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --scaffold: rgba(81, 98, 48, 0.45);
+    --scaffold-fill: rgba(81, 98, 48, 0.08);
+    --scaffold-grid: rgba(81, 98, 48, 0.06);
+  }
+}
+
+/* The normal entrance and reveal animations are replaced by the build. */
+html[data-intro] .in,
+html[data-intro] .sweep,
+html[data-intro] .reveal {
+  animation: none;
+}
+html[data-intro]:not([data-intro="done"]) .sweep {
+  opacity: 0;
+}
+
+/* Boxes: a dashed outline with hidden contents until an agent assembles them. */
+html[data-intro]:not([data-intro="done"]) [data-build="box"]:not(.built):not(.assembling) {
+  outline: 1px dashed var(--scaffold);
+  outline-offset: 4px;
+  border-radius: 8px;
+  background: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none;
+  filter: none;
+}
+html[data-intro]:not([data-intro="done"]) [data-build]:not(.built):not(.assembling),
+html[data-intro]:not([data-intro="done"]) [data-build]:not(.built):not(.assembling) * {
+  color: transparent !important;
+}
+html[data-intro]:not([data-intro="done"]) [data-build]:not(.built):not(.assembling) * {
+  background: transparent !important;
+  border-color: transparent !important;
+}
+/* Things colour rules can't hide: embedded frames and input placeholders. */
+html[data-intro]:not([data-intro="done"]) [data-build]:not(.built):not(.assembling) iframe {
+  visibility: hidden;
+}
+html[data-intro]:not([data-intro="done"]) [data-build]:not(.built):not(.assembling) input::placeholder,
+html[data-intro]:not([data-intro="done"]) [data-build]:not(.built):not(.assembling) textarea::placeholder {
+  color: transparent !important;
+}
+/* Assembling: the base slots in, then each child piece is dropped into place. */
+html[data-intro] [data-build].assembling {
+  animation: slot 0.32s cubic-bezier(0.2, 1.3, 0.4, 1) both;
+}
+@keyframes slot {
+  from {
+    transform: scale(0.96);
+    opacity: 0.3;
+  }
+}
+html[data-intro]:not([data-intro="done"]) [data-build].assembling > *:not(.placed),
+html[data-intro]:not([data-intro="done"]) [data-build].assembling .nest > *:not(.placed):not(.sr-only) {
+  opacity: 0;
+}
+html[data-intro] .placed {
+  animation: place 0.4s cubic-bezier(0.2, 1.5, 0.4, 1) both;
+}
+@keyframes place {
+  from {
+    transform: translateY(-16px) scale(0.9) rotate(-2deg);
+    opacity: 0;
+  }
+}
+/* Text fields draw in where they sit instead of dropping: browsers paint the
+   placeholder separately, and it lags behind a moving/bouncing input. */
+html[data-intro] input.placed,
+html[data-intro] textarea.placed {
+  animation: field-in 0.45s ease-out both;
+}
+@keyframes field-in {
+  from {
+    opacity: 0;
+    clip-path: inset(0 100% 0 0 round 8px);
+    border-color: var(--accent);
+  }
+  60% {
+    opacity: 1;
+    border-color: var(--accent);
+  }
+  to {
+    clip-path: inset(0 0 0 0 round 8px);
+  }
+}
+/* Pieces finished instantly (skip) pop in; assembled ones are already in place. */
+html[data-intro] [data-build].built:not(.quiet) {
+  animation: materialize 0.45s cubic-bezier(0.2, 0.8, 0.2, 1.25) both;
+}
+@keyframes materialize {
+  from {
+    transform: scale(0.94);
+    filter: blur(4px);
+  }
+  to {
+    transform: none;
+    filter: none;
+  }
+}
+
+/* Typed text: a faint placeholder bar, then characters appear one by one,
+   each flashing the accent colour as it lands. */
+html[data-intro]:not([data-intro="done"]) [data-type]:not(.typed) {
+  background: var(--scaffold-fill);
+  border-radius: 4px;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+html[data-intro]:not([data-intro="done"]) [data-type]:not(.typed) .tw > span:not(.on) {
+  opacity: 0;
+}
+html[data-intro] .tw > span.on {
+  animation: keystroke 0.35s ease-out;
+}
+@keyframes keystroke {
+  from {
+    color: var(--accent);
+    text-shadow: 0 0 10px var(--accent);
+  }
+}
+
+/* Name letters: outlined glyphs that get stamped in and spring to width. */
+.hero-name .line {
+  display: block;
+  white-space: nowrap; /* never break a name mid-word */
+}
+@media (max-width: 359px) {
+  .hero-name {
+    font-size: 15vw;
+  }
+}
+.hero-name .ch {
+  display: inline-block;
+}
+html[data-intro]:not([data-intro="done"]) .hero-name .ch:not(.built) {
+  color: transparent;
+  -webkit-text-stroke: 1px var(--scaffold);
+}
+html[data-intro] .hero-name .ch.built {
+  animation: stretch 0.55s cubic-bezier(0.3, 1.6, 0.5, 1) both;
+}
+@keyframes stretch {
+  from {
+    transform: scaleX(0.3) scaleY(1.15);
+    opacity: 0.4;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+/* Blueprint grid behind the hero while it's being built. */
+.blueprint {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: linear-gradient(var(--scaffold-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--scaffold-grid) 1px, transparent 1px);
+  background-size: 40px 40px;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+html[data-intro="building"] .blueprint {
+  opacity: 1;
+}
+
+/* The agents doing the building. */
+/* Anchored to the document (not the window) so the agents scroll with the page. */
+.intro-layer {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 0;
+  overflow: visible;
+  z-index: 40;
+  pointer-events: none;
+}
+html[data-intro="building"] .intro-layer,
+html[data-agents="away"] .intro-layer {
+  display: block;
+}
+.intro-bot {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 34px;
+  height: 34px;
+  transform: translate(-100px, -100px) scale(0);
+  will-change: transform;
+}
+.intro-bot svg {
+  display: block;
+  width: 34px;
+  height: 34px;
+  overflow: visible;
+}
+/* A small, faint burst when a box snaps in, a letter is stamped, or a bot appears. */
+.intro-ring {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 28px;
+  height: 28px;
+  margin: -14px 0 0 -14px;
+  border-radius: 50%;
+  border: 1.5px solid var(--accent);
+  opacity: 0;
+  pointer-events: none;
+}
+.intro-ring.pop {
+  animation: ring 0.55s ease-out;
+}
+@keyframes ring {
+  from {
+    opacity: 0.5;
+    scale: 0.4;
+  }
+  to {
+    opacity: 0;
+    scale: 1.3;
+  }
+}
+.intro-caret {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2px;
+  height: 20px;
+  border-radius: 1px;
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent);
+  opacity: 0;
+  animation: caret-blink 0.8s steps(1) infinite;
+}
+@keyframes caret-blink {
+  50% {
+    visibility: hidden;
+  }
+}
+.intro-frame {
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-radius: 8px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.intro-frame.on {
+  opacity: 1;
+}
+.intro-frame i {
+  position: absolute;
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent);
+  transform: scale(0);
+}
+.intro-frame .e-t {
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 2px;
+  transform-origin: left;
+}
+.intro-frame .e-r {
+  right: 0;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  transform-origin: top;
+}
+.intro-frame .e-b {
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  transform-origin: right;
+}
+.intro-frame .e-l {
+  left: 0;
+  bottom: 0;
+  width: 2px;
+  height: 100%;
+  transform-origin: bottom;
+}
+.intro-bot .carry {
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  width: 10px;
+  height: 10px;
+  margin: -3px 0 0 -5px;
+  border-radius: 2px;
+  background: var(--accent);
+  box-shadow: 0 0 6px var(--accent);
+  opacity: 0;
+  transform: scale(0.4);
+  transition: opacity 0.12s ease, transform 0.12s ease;
+}
+.intro-bot.carrying .carry {
+  opacity: 1;
+  transform: none;
+}
+.intro-skip {
+  display: none;
+  z-index: 41;
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+  min-height: 36px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid var(--field-border);
+  background: var(--surface);
+  color: var(--muted);
+  font-family: var(--font-code);
+  font-size: 12px;
+  cursor: pointer;
+  pointer-events: auto;
+}
+.intro-skip:hover {
+  color: var(--text);
+}
+html[data-intro]:not([data-intro="done"]) .intro-skip {
+  display: block;
+}
+.toggle-box {
+  display: inline-flex;
+}
+
+/* The rail appears once the hero is built; its bots hide while the agents
+   are out building a section. */
+.rail,
+.rail .bots {
+  transition: opacity 0.35s ease;
+}
+html[data-intro="building"] .rail {
+  opacity: 0;
+}
+html[data-agents="away"] .rail .bots {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .in,
+  .reveal,
+  .sweep {
+    animation: none !important;
+  }
 }

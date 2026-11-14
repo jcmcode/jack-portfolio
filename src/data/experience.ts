@@ -1,51 +1,39 @@
-export interface Experience {
-  year: string;
-  role: string;
-  company: string;
-  description: string;
+export interface Org {
+  org: string;
+  span: string;
+  note: string;
+  roles: { role: string; when: string }[];
 }
 
-export const experiences: Experience[] = [
+export const experience: Org[] = [
   {
-    year: "2026 —",
-    role: "AI Implementation Intern",
-    company: "Strategic Analysis Corporation",
-    description:
-      "AI implementation and integration.",
+    org: "Strategic Analysis Corporation",
+    span: "2026 — now",
+    note: "Building an AI-powered equity-research platform.",
+    roles: [
+      { role: "AI-Accelerated Platform Developer (Intern)", when: "Apr 2026 — now" },
+      { role: "Generative AI Research & Optimization (Contract)", when: "Mar — Apr 2026" },
+    ],
   },
   {
-    year: "2024 —",
-    role: "Project Manager — Pairs Trading",
-    company: "QUANTT — Queen's Algorithmic & Network Trading Team",
-    description:
-      "Leading pairs trading research, developing arbitrage algorithms using unsupervised clustering across 142 tickers.",
+    org: "QUANTT",
+    span: "2024 — now",
+    note: "Queen's Algorithmic & Network Trading Team. I run the club's tech and co-lead its research.",
+    roles: [
+      { role: "Chief Technology Officer", when: "Mar 2026 — now" },
+      { role: "Project Manager, Pairs Trading", when: "Aug 2025 — Apr 2026" },
+      { role: "Quantitative Analyst", when: "Sep 2024 — Aug 2025" },
+    ],
   },
   {
-    year: "2025",
-    role: "Data Transfer Assistant",
-    company: "Community Living Owen Sound and District",
-    description:
-      "Data migration and systems transfer work.",
-  },
-  {
-    year: "2024",
-    role: "Competitor",
-    company: "Rotman x Smith Market Simulation",
-    description:
-      "Placed 5th in liabilities trading and algorithmic trading competitions.",
-  },
-  {
-    year: "2023 — 24",
-    role: "Member",
-    company: "ESSDEV",
-    description:
-      "Designed and trained an ML snowboard coach using pressure sensor and motion data for trick feedback.",
-  },
-  {
-    year: "2021 — 23",
-    role: "Landscape Labourer",
-    company: "Hutten & Co. Land and Shore",
-    description:
-      "Landscaping and property maintenance.",
+    org: "Queen's University",
+    span: "Class of 2027",
+    note: "Probability, stochastic processes, control theory and information theory.",
+    roles: [
+      {
+        role: "B.A.Sc. Mathematics & Engineering (Computing & Communications)",
+        when: "May 2027",
+      },
+    ],
   },
 ];

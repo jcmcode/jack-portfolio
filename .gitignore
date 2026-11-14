@@ -33,10 +33,27 @@ yarn-error.log*
 # env files (can opt-in for committing if needed)
 .env*
 
-# vercel
-.vercel
 
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+# PDFs are never committed, except the public resume the site serves.
+# It's public at /resume.pdf anyway, so only commit a copy with no phone
+# number or other private details (old versions stay in git history).
 *.pdf
+!public/resume.pdf
+
+# public, non-secret env files can be committed (Turnstile site keys are public)
+!.env.development
+!.env.production
+!.env.production.example
+
+# cloudflare
+.wrangler
+.dev.vars*
+!.dev.vars.example
+
+# local tooling and planning notes (may contain local paths)
+.superpowers
+.claude/
+docs/
